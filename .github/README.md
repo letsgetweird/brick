@@ -148,7 +148,7 @@ Brick currently supports the following industrial protocols via CISA ICSNPP plug
 - [ ] Configurable / Better Time
 - [ ] Live Traffic ingestion
 - [ ] Integration with external SIEM systems
-- [ ] REST API for programmatic access
+- [ ] Better utilize information from ICSNPP Parsers (we barely scratched the surface here)
 
 ---
 
