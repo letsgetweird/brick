@@ -9,6 +9,8 @@ dist/
 *.egg-info/
 *.egg
 *.log
+.cache/
+*.cache
 
 # Virtual Environments
 venv/
