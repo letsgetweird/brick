@@ -9,22 +9,21 @@ async def handle_upload(e: events.UploadEventArguments):
     final_path = os.path.join(UPLOAD_PATH, 'input.pcap')
 
     try:
-        # 1. Identify the content object
+        # 1. identify content object
         content = getattr(e, 'content', getattr(e, 'file', None))
         
-        # 2. Safely get the filename for the notification
+        # 2. get the filename for the notification
         # Check e.name, then content.filename, then default to 'unknown_file'
         file_name = getattr(e, 'name', getattr(content, 'filename', 'unknown_file'))
 
         if content:
-            # 3. Handle the async read
-            # Based on your previous error, we know this needs to be awaited
+            # 3. handle async read
             data = await content.read()
             
             with open(temp_path, 'wb') as f:
                 f.write(data)
                 
-            # 4. Atomic move for Zeek
+            # 4. atomic move for Zeek
             os.rename(temp_path, final_path)
             ui.notify(f'PCAP "{file_name}" uploaded.', type='info')
         else:
