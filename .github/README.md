@@ -10,7 +10,7 @@ Built on Zeek with CISA's ICSNPP plugins, Brick automatically discovers and cata
 
 ---
 
-## 🎯 Why Brick?
+## Why Brick?
 
 After spending time reviewing existing ICS tooling such as [GRASSMARLIN](https://github.com/nsacyber/GRASSMARLIN) and CISA's [Malcom](https://github.com/cisagov/Malcolm), I saw a need for a lightweight tool that could be utilzed for ICS asset inventory for budget-constrained organizations. A lot of tools in this space are either overkill for something as simple as an asset inventory or exist as a paid product (usually from the hardware vendor).
 There is no special sauce here, this tool is simply glue for the hard work and effort others have put in. 
@@ -22,7 +22,7 @@ There is no special sauce here, this tool is simply glue for the hard work and e
 ![UI Showcase](brick_ui.png)
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 Brick consists of two main containers:
 
@@ -43,7 +43,7 @@ Brick consists of two main containers:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -76,7 +76,7 @@ Brick consists of two main containers:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 brick/
@@ -106,7 +106,7 @@ Add custom Zeek scripts to the `scripts/` directory. They will be automatically 
 
 ---
 
-## 🧪 Usage Examples
+## Usage Examples
 
 ### Analyzing a PCAP File
 
@@ -139,7 +139,7 @@ Brick currently supports the following industrial protocols via CISA ICSNPP plug
 ---
 
 
-## 📋 Roadmap
+## Roadmap
 
 - [ ] DNP3 protocol support
 - [ ] BACnet protocol support
@@ -152,7 +152,7 @@ Brick currently supports the following industrial protocols via CISA ICSNPP plug
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! 
 
@@ -164,7 +164,7 @@ No formal process yet - just be respectful and we'll figure it out together.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
@@ -180,7 +180,7 @@ Key points:
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **CISA**: For the excellent [ICSNPP](https://github.com/cisagov/ICSNPP) industrial protocol parsers
 - **Zeek Project**: For the powerful network analysis framework
@@ -189,7 +189,7 @@ Key points:
 
 ---
 
-## 📞 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/letsgetweird/brick/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/letsgetweird/brick/discussions)
@@ -197,7 +197,7 @@ Key points:
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 Brick is provided for legitimate security testing and network monitoring purposes only. Users are responsible for ensuring they have appropriate authorization before analyzing network traffic. The authors assume no liability for misuse of this tool.
 
@@ -207,8 +207,3 @@ Brick is provided for legitimate security testing and network monitoring purpose
 - Only process PCAPs from trusted sources
 - The tool performs passive analysis and does not interact with live networks
 
----
-
-**Built with 🧱 for the ICS security community**
-
-*Brick: The foundation component of industrial security*
