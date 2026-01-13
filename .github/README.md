@@ -126,7 +126,7 @@ This script stops containers, removes volumes, and cleans up temporary files.
 
 ---
 
-## 🔌 Supported Protocols
+## Supported Protocols
 
 Brick currently supports the following industrial protocols via CISA ICSNPP plugins:
 
