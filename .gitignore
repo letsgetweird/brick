@@ -5,28 +5,16 @@ __pycache__/
 *.so
 .Python
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
 *.egg
-MANIFEST
 *.log
 
 # Virtual Environments
 venv/
 ENV/
 env/
-.venv
+.venv/
 
 # IDEs
 .vscode/
@@ -34,37 +22,43 @@ env/
 *.swp
 *.swo
 *~
+
+# OS
 .DS_Store
+Thumbs.db
 
-# Jupyter
-.ipynb_checkpoints
+# Brick - Data and Uploads
+data/
+uploads/
+*.sqlite
+*.db
+*.pcap
+*.pcapng
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# Brick specific
-data/*.sqlite
-uploads/*.pcap
-uploads/*.pcapng
-logs/*.log
-zeek-logs/
-
-# Container volumes
-volumes/
-
-# Temporary files
+# Brick - Temporary files
 *.tmp
 *.bak
 *.orig
+processed.pcap
+input.pcap
 
 # Environment files
 .env
 .env.local
+*.key
+*.pem
+secrets/
+credentials/
 
-# Build artifacts
+# Container artifacts
+volumes/
+
+# Archives
 *.tar
 *.tar.gz
 *.zip
+
+# Testing (for future)
+.pytest_cache/
+.coverage
+htmlcov/
