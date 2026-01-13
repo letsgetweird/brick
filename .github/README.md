@@ -182,10 +182,10 @@ Key points:
 
 ## Acknowledgments
 
-- **CISA**: For the excellent [ICSNPP](https://github.com/cisagov/ICSNPP) industrial protocol parsers
-- **Zeek Project**: For the powerful network analysis framework
-- **NiceGUI Team**: For the modern Python web framework
-- **The ICS Security Community**: For ongoing research and tooling
+- **CISA**
+- **Zeek Project**
+- **NiceGUI Team**
+- **The ICS Security Community**
 
 ---
 
@@ -193,7 +193,6 @@ Key points:
 
 - **Issues**: [GitHub Issues](https://github.com/letsgetweird/brick/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/letsgetweird/brick/discussions)
-- **Security**: For security vulnerabilities, please see [SECURITY.md](SECURITY.md)
 
 ---
 
