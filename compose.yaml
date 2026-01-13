@@ -1,0 +1,30 @@
+services:
+  brick-web:
+    image: docker.io/zauberzeug/nicegui:3.4.1
+    container_name: brick-web
+    working_dir: /app/src
+    userns: "keep-id"
+    entrypoint: ["/app/.venv/bin/python3", "main.py"]
+    command: []
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./app:/app/src:z
+      - ./data:/data:z
+      - ./uploads:/uploads:z
+    environment:
+      - ZEEK_LOG_PATH=/data/zeek_logs
+      - UPLOAD_PATH=/uploads
+      - DB_PATH=/data/inventory.sqlite
+      - PYTHONPATH=/app/src:/app/.venv/lib/python3.12/site-packages
+      - TMPDIR=/uploads
+  
+  brick-zeek:
+    image: localhost/zeek-ics:test
+    container_name: brick-zeek
+    volumes:
+      - ./uploads:/uploads:rw,z
+      - ./data:/data:rw,z
+      - ./scripts:/scripts:ro,z
+    working_dir: /data/zeek_logs
+    entrypoint: ["/bin/bash", "-c", "while true; do if [ -f /uploads/input.pcap ]; then zeek -C -r /uploads/input.pcap /scripts/dangdevil.zeek 'LogAscii::use_json=T'; mv /uploads/input.pcap /uploads/processed.pcap; fi; sleep 2; done"]
