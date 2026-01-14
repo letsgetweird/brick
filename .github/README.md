@@ -17,12 +17,12 @@ enterprise complexity or cost.
 
 ## Why Brick?
 
-After spending time reviewing existing ICS tooling such as [GRASSMARLIN](https://github.com/nsacyber/GRASSMARLIN) and CISA's [Malcom](https://github.com/cisagov/Malcolm), I saw a need for a lightweight tool that could be utilzed for ICS asset inventory for budget-constrained organizations. A lot of tools in this space are either overkill for something as simple as an asset inventory or exist as a paid product (usually from the hardware vendor).
+After spending time reviewing existing ICS tooling such as [GRASSMARLIN](https://github.com/nsacyber/GRASSMARLIN) and CISA's [Malcolm](https://github.com/cisagov/Malcolm), I saw a need for a lightweight tool that could be utilzed for ICS asset inventory for budget-constrained organizations. A lot of tools in this space are either overkill for something as simple as an asset inventory or exist as a paid product (usually from the hardware vendor).
 There is no special sauce here, this tool is simply glue for the hard work and effort others have put in. 
 
 - **Simple** - Upload PCAP and view results
 - **Effective** - Easy to navigate with actionable information upfront
-- **Open Source** - ICS Community can feel free to review
+- **Open Source** - Community reviewable and contributor-friendly
 
 ![UI Showcase](brick_ui.png)
 ---
@@ -70,7 +70,7 @@ Brick consists of two main containers:
    podman-compose up -d
    # or
    docker-compose up -d
-   # orrrrr
+   # or
    ./reset.sh (just a simple bash script for redeploying with podman)
    ```
 
@@ -138,7 +138,7 @@ Brick currently supports the following industrial protocols via CISA ICSNPP plug
 | Protocol | Plugin | Common Use Cases |
 |----------|--------|------------------|
 | **Modbus** | [icsnpp-modbus](https://github.com/letsgetweird/icsnpp-modbus) | PLCs, RTUs, SCADA systems |
-| **EtherNet/IP** | [icsnpp-etherip](https://github.com/letsgetweird/icsnpp-enip) | Allen-Bradley PLCs, industrial Ethernet |
+| **EtherNet/IP** | [icsnpp-enip](https://github.com/letsgetweird/icsnpp-enip) | Allen-Bradley PLCs, industrial Ethernet |
 | **S7comm** | [icsnpp-s7comm](https://github.com/letsgetweird/icsnpp-s7comm) | Siemens PLCs (S7-300, S7-400, S7-1200, S7-1500) |
 
 ---
@@ -187,10 +187,7 @@ Key points:
 
 ## Acknowledgments
 
-- **CISA**
-- **Zeek Project**
-- **NiceGUI Team**
-- **The ICS Security Community**
+Built with Zeek, CISA's ICSNPP plugins, and NiceGUI.
 
 ---
 
