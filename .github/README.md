@@ -1,8 +1,13 @@
 # 🧱 Brick
 
-Brick is an open-source ICS asset discovery tool that provides the critical first layer of visibility into your ICS network. 
+Brick is a lightweight, open-source ICS asset discovery tool for industrial networks.
 
-Built on Zeek with CISA's ICSNPP plugins, Brick automatically discovers and catalogs Modbus, EtherNet/IP, and Siemens S7comm traffic and devices, providing the essential asset inventory that every ICS security program requires.
+Built on Zeek with CISA's ICSNPP plugins, Brick analyzes network captures to 
+identify Modbus, EtherNet/IP, and S7comm devices, providing a simple asset 
+inventory for compliance and network visibility.
+
+Perfect for smaller facilities that need basic asset discovery without 
+enterprise complexity or cost.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Zeek](https://img.shields.io/badge/Zeek-6.x-blue)](https://zeek.org/)
