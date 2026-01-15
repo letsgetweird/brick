@@ -17,10 +17,6 @@ Sample packet captures for testing Brick.
 
 ## Sources
 
-These samples are from public repositories:
-
-- **Modbus**: [ICS-pcap project](https://github.com/automayt/ICS-pcap/blob/master/MODBUS/MODBUS-TestDataPart1/MODBUS-TestDataPart1.pcap) by automayt
-- **ENIP**: [ICS-pcap project](https://github.com/automayt/ICS-pcap/blob/master/ETHERNET_IP/digitalbond%20pcaps/CL5000EIP-Change-Date-Attempt/CL5000EIP-Change-Date-Attempt.pcap) by automayt
-- **S7**: [ICS-pcap project](https://github.com/automayt/ICS-pcap/blob/master/S7/s7comm_reading_setting_plc_time/s7comm_reading_setting_plc_time.pcap) by automayt
+Samples from the [ICS-pcap project](https://github.com/automayt/ICS-pcap) by automayt.
 
 All samples are publicly available and used for testing and educational purposes only.
