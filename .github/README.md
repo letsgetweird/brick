@@ -94,7 +94,7 @@ sample-pcaps/enip-sample.pcap
 sample-pcaps/s7comm-sample.pcap
 ```
 
-See [sample-pcaps/README.md](sample-pcaps/README.md) for sources.
+See [sample-pcaps/README.md](../sample-pcaps/README.md) for sources.
 
 ---
 
