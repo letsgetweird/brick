@@ -55,7 +55,10 @@ Brick consists of two main containers:
 - Podman or Docker
 - Podman Compose or Docker Compose
 - 2GB+ free RAM
-- Linux host (recommended) or macOS/Windows with container support
+- Linux recommended (tested on Ubuntu 24.04 LTS)
+
+**Note:** macOS and Windows with Docker Desktop should work but are untested. 
+Feedback welcome!
 
 ### Installation
 
