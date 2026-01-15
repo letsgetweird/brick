@@ -10,7 +10,7 @@ rm -f data/zeek_logs/*
 rm -f uploads/*
 
 echo "[*] Building Zeek container with ICS plugins..."
-podman build --network=host -t localhost/zeek-ics:test -f Dockerfile.zeek \
+podman build --network=host -t localhost/zeek-ics:1.0.0 -f Dockerfile.zeek \
   --build-arg GITHUB_USER=letsgetweird .
 
 echo "[*] Starting containers..."

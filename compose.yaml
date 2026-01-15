@@ -20,7 +20,7 @@ services:
       - TMPDIR=/uploads
   
   brick-zeek:
-    image: localhost/zeek-ics:test
+    image: localhost/zeek-ics:1.0.0
     container_name: brick-zeek
     volumes:
       - ./uploads:/uploads:rw,z
