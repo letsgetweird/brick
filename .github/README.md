@@ -84,25 +84,17 @@ Feedback welcome!
 
 ---
 
-## Project Structure
+## Testing with Sample Data
 
+Brick includes sample PCAPs in `sample-pcaps/`:
+```bash
+# Upload these via the web interface:
+sample-pcaps/modbus-sample.pcap
+sample-pcaps/enip-sample.pcap
+sample-pcaps/s7comm-sample.pcap
 ```
-brick/
-├── Dockerfile.zeek          # Zeek container with ICSNPP plugins
-├── compose.yaml             # Container orchestration
-├── reset.sh                 # Reset script for development
-├── app/
-│   ├── main.py             # NiceGUI application entry point
-│   ├── components.py       # UI components
-│   ├── state.py            # Application state management
-│   ├── database.py         # SQLite operations
-│   ├── log_processor.py    # Zeek log parsing
-│   └── upload_handler.py   # PCAP upload handling
-├── scripts/
-│   └── dangdevil.zeek      # Custom Zeek scripts
-├── data/                   # Persistent data directory
-└── uploads/                # PCAP upload directory
-```
+
+See [sample-pcaps/README.md](sample-pcaps/README.md) for sources.
 
 ---
 
