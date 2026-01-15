@@ -108,23 +108,32 @@ def update_protocol(ip, protocol):
     if not protocol or not isinstance(protocol, str):
         return
     
-    # Sanitize protocol name (alphanumeric + underscore only)
-    if not re.match(r'^[A-Za-z0-9_-]+$', protocol):
-        print(f"Invalid protocol name rejected: {protocol}")
-        return
+    # Handle comma-separated protocols (e.g., "COTP,S7COMM")
+    protocols = [p.strip() for p in protocol.split(',')]
     
-    conn = sqlite3.connect(DB_PATH)
-    try:
-        conn.execute('''INSERT INTO protocols (ip, protocol, packet_count, last_seen)
-                       VALUES (?, ?, 1, CURRENT_TIMESTAMP)
-                       ON CONFLICT(ip, protocol) DO UPDATE SET
-                       packet_count = packet_count + 1,
-                       last_seen = CURRENT_TIMESTAMP''', (ip, protocol))
-        conn.commit()
-    except sqlite3.Error as e:
-        print(f"Database error in update_protocol: {e}")
-    finally:
-        conn.close()
+    for proto in protocols:
+        # Skip if too long
+        if len(proto) > 50:
+            print(f"Protocol name too long, skipping: {proto}")
+            continue
+        
+        # Sanitize protocol name (alphanumeric + underscore + dash only)
+        if not re.match(r'^[A-Za-z0-9_-]+$', proto):
+            print(f"Invalid protocol name rejected: {proto}")
+            continue
+        
+        conn = sqlite3.connect(DB_PATH)
+        try:
+            conn.execute('''INSERT INTO protocols (ip, protocol, packet_count, last_seen)
+                           VALUES (?, ?, 1, CURRENT_TIMESTAMP)
+                           ON CONFLICT(ip, protocol) DO UPDATE SET
+                           packet_count = packet_count + 1,
+                           last_seen = CURRENT_TIMESTAMP''', (ip, proto))
+            conn.commit()
+        except sqlite3.Error as e:
+            print(f"Database error in update_protocol: {e}")
+        finally:
+            conn.close()
 
 def update_connection(source_ip, dest_ip, dest_port, protocol):
     """Track connections between assets"""

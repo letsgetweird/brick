@@ -98,7 +98,15 @@ def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback)
                 
                 ui.label(ip).classes('text-lg font-bold text-blue-300')
                 ui.label(f"MAC: {asset['mac'] or 'Unknown'}").classes('text-sm text-gray-400')
-                ui.label(f"{protocols_summary}").classes('text-sm text-green-400')
+                
+                # Protocol badges with proper spacing
+                protocols_list = protocols_summary.split(", ") if protocols_summary != "None" else []
+                if protocols_list:
+                    with ui.row().classes('gap-2'):
+                        for proto in protocols_list:
+                            ui.label(proto).classes('text-xs px-2 py-1 bg-green-700 rounded text-white')
+                else:
+                    ui.label("None").classes('text-sm text-gray-400')
             
             with ui.row().classes('items-center gap-2'):
                 ui.label(f"First: {format_timestamp(asset['first_seen'])}").classes('text-xs text-gray-500')
@@ -127,4 +135,4 @@ def create_upload_section():
         import upload_handler
         ui.upload(on_upload=upload_handler.handle_upload, 
                   label="Drop PCAP file here or click to browse", 
-                  auto_upload=True).classes('w-full').props('accept=".pcap,.pcapng"')	
+                  auto_upload=True).classes('w-full').props('accept=".pcap,.pcapng"')
