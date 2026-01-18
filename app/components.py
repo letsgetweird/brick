@@ -147,3 +147,30 @@ def create_upload_section():
                 upload.run_method('pickFiles')
             
             ui.button('Upload PCAP', icon='upload', on_click=trigger_upload).props('color=blue no-caps').style('width: 161.05px; height: 36px')
+
+
+def create_export_section(asset_count_display_ref):
+    """Create the export card"""
+    import export
+    
+    with ui.card().classes('w-full'):
+        with ui.row().classes('w-full justify-between items-center p-4'):
+            with ui.column():
+                ui.label('Asset Inventory').classes('text-xl font-bold')
+                asset_count_display_ref[0] = ui.label('0 devices found').classes('text-sm text-gray-400')
+            
+            def handle_export():
+                try:
+                    assets = database.get_all_assets()
+                    if not assets:
+                        ui.notify('No assets to export. Upload a PCAP first.', type='warning')
+                        return
+                    
+                    filepath, filename = export.export_inventory_csv()
+                    ui.download(filepath, filename)
+                    ui.notify('Inventory exported successfully!', type='positive')
+                except Exception as e:
+                    print(f"Export error: {e}")
+                    ui.notify(f'Export failed: {str(e)}', type='negative')
+            
+            ui.button('Export CSV', icon='download', on_click=handle_export).props('color=green no-caps').style('width: 161.05px; height: 36px')
