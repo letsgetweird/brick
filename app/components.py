@@ -80,7 +80,7 @@ def create_connections_section(ip, connections, on_toggle_callback):
     else:
         ui.label('No connection data').classes('text-gray-400 text-sm')
 
-def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback):
+def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback, unrecognized=False):
     """Create a card for each asset with expandable details"""
     ip = asset['ip']
     protocols_summary = database.get_protocols_summary(ip)
@@ -99,14 +99,17 @@ def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback)
                 ui.label(ip).classes('text-lg font-bold text-blue-300')
                 ui.label(f"MAC: {asset['mac'] or 'Unknown'}").classes('text-sm text-gray-400')
                 
-                # Protocol badges with proper spacing
-                protocols_list = protocols_summary.split(", ") if protocols_summary != "None" else []
-                if protocols_list:
-                    with ui.row().classes('gap-2'):
-                        for proto in protocols_list:
-                            ui.label(proto).classes('text-xs px-2 py-1 bg-green-700 rounded text-white')
+                # Protocol badges or unrecognized label
+                if unrecognized:
+                    ui.label('Unrecognized Protocol').classes('text-xs px-2 py-1 bg-gray-700 rounded text-gray-300')
                 else:
-                    ui.label("None").classes('text-sm text-gray-400')
+                    protocols_list = protocols_summary.split(", ") if protocols_summary != "None" else []
+                    if protocols_list:
+                        with ui.row().classes('gap-2'):
+                            for proto in protocols_list:
+                                ui.label(proto).classes('text-xs px-2 py-1 bg-green-700 rounded text-white')
+                    else:
+                        ui.label("None").classes('text-sm text-gray-400')
             
             with ui.row().classes('items-center gap-2'):
                 ui.label(f"First: {format_timestamp(asset['first_seen'])}").classes('text-xs text-gray-500')
@@ -122,7 +125,11 @@ def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback)
             with ui.row().classes('w-full gap-4'):
                 # Left column - Protocols
                 with ui.column().classes('flex-1'):
-                    create_protocol_section(protocols)
+                    if unrecognized:
+                        ui.label('Protocol Information:').classes('text-md font-bold mb-2')
+                        ui.label('No supported ICS protocols detected.').classes('text-sm text-gray-400')
+                    else:
+                        create_protocol_section(protocols)
                 
                 # Right column - Connections
                 with ui.column().classes('flex-1'):

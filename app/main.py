@@ -22,10 +22,15 @@ def refresh_ui():
     with asset_container:
         if assets:
             for asset in assets:
+                # Check if asset has recognized ICS protocols
+                protocols = database.get_protocols_summary(asset['ip'])
+                unrecognized = (protocols == "None")
+                
                 components.create_asset_card(
                     asset, 
                     on_expand_callback=handle_expansion,
-                    on_toggle_connections_callback=handle_toggle_connections
+                    on_toggle_connections_callback=handle_toggle_connections,
+                    unrecognized=unrecognized
                 )
         else:
             ui.label('No assets discovered yet. Upload a PCAP to begin.').classes('text-gray-400 text-center p-8')
