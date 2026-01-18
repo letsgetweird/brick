@@ -1,5 +1,6 @@
 """Main UI layout and application entry point"""
 from nicegui import ui
+import os
 import database
 import log_processor
 import state
@@ -12,7 +13,7 @@ database.init_db()
 # UI state references
 asset_container = None
 asset_count_label = None
-asset_count_display = [None]  # Use list so we can modify inside component function
+asset_count_display = [None]
 
 def refresh_ui():
     """Refresh just the UI without re-parsing logs"""
@@ -79,6 +80,6 @@ with ui.column().classes('w-full max-w-6xl mx-auto p-6 gap-6'):
 
 # Initial load and auto-refresh
 refresh_data()
-ui.timer(5.0, refresh_data)
+ui.timer(5.0, refresh_data)  # Check every 5 seconds for updates
 
-ui.run(host='0.0.0.0', port=8080, title="Brick")
+ui.run(host='0.0.0.0', port=8080, title="Brick", reconnect_timeout=120.0)

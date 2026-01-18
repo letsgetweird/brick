@@ -136,24 +136,34 @@ def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback,
                     create_connections_section(ip, connections, on_toggle_connections_callback)
 
 def create_upload_section():
-    """Create the upload card"""
+    """Create the upload card with status bar"""
     import upload_handler
     
     with ui.card().classes('w-full'):
-        with ui.row().classes('w-full justify-between items-center p-4'):
-            ui.label('Upload PCAP File').classes('text-xl font-bold')
+        with ui.column().classes('w-full p-4 gap-3'):
+            # Header row with title and button
+            with ui.row().classes('w-full justify-between items-center'):
+                ui.label('Upload PCAP File').classes('text-xl font-bold')
+                
+                # Hidden upload element
+                upload = ui.upload(
+                    on_upload=upload_handler.handle_upload,
+                    auto_upload=True
+                ).props('accept=".pcap,.pcapng"').classes('hidden')
+                
+                # Visible button
+                def trigger_upload():
+                    upload.run_method('pickFiles')
+                
+                ui.button('Upload PCAP', icon='upload', on_click=trigger_upload).props('color=blue no-caps').style('width: 161.05px; height: 36px')
             
-            # Hidden upload element (completely invisible, no notifications)
-            upload = ui.upload(
-                on_upload=upload_handler.handle_upload,
-                auto_upload=True
-            ).props('accept=".pcap,.pcapng"').classes('hidden')
-            
-            # Visible button - exact same styling as export
-            def trigger_upload():
-                upload.run_method('pickFiles')
-            
-            ui.button('Upload PCAP', icon='upload', on_click=trigger_upload).props('color=blue no-caps').style('width: 161.05px; height: 36px')
+            # Status bar section
+            with ui.row().classes('w-full items-center gap-2'):
+                ui.icon('info').classes('text-gray-400').style('font-size: 18px')
+                status = ui.label('Ready to upload').classes('text-sm text-gray-400')
+                
+                # Register the status bar with the upload handler
+                upload_handler.set_status_bar(status)
 
 
 def create_export_section(asset_count_display_ref):
