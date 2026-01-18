@@ -4,6 +4,7 @@ import database
 import log_processor
 import state
 import components
+import export
 
 # Initialize
 database.init_db()
@@ -11,6 +12,7 @@ database.init_db()
 # UI state references
 asset_container = None
 asset_count_label = None
+asset_count_display = None  # Add this for the inventory card display
 
 def refresh_ui():
     """Refresh just the UI without re-parsing logs"""
@@ -33,7 +35,11 @@ def refresh_data():
     log_processor.parse_asset_log()
     log_processor.parse_conn_log()
     refresh_ui()
-    asset_count_label.text = f'{len(database.get_all_assets())} Assets'
+    
+    # Update both asset count displays
+    asset_count = len(database.get_all_assets())
+    asset_count_label.text = f'{asset_count} Assets'
+    asset_count_display.text = f'{asset_count} device{"s" if asset_count != 1 else ""} found'
 
 def handle_expansion(ip):
     """Handle asset expansion toggle"""
@@ -44,6 +50,21 @@ def handle_toggle_connections(ip):
     """Handle showing all connections toggle"""
     state.toggle_show_all(ip)
     refresh_ui()
+
+def handle_export():
+    """Handle CSV export"""
+    try:
+        assets = database.get_all_assets()
+        if not assets:
+            ui.notify('No assets to export. Upload a PCAP first.', type='warning')
+            return
+        
+        filepath, filename = export.export_inventory_csv()
+        ui.download(filepath, filename)
+        ui.notify('Inventory exported successfully!', type='positive')
+    except Exception as e:
+        print(f"Export error: {e}")
+        ui.notify(f'Export failed: {str(e)}', type='negative')
 
 # Build UI
 ui.dark_mode().enable()
@@ -57,6 +78,15 @@ with ui.header().classes('bg-slate-900 items-center justify-between shadow-2'):
 with ui.column().classes('w-full max-w-6xl mx-auto p-6 gap-6'):
     # Upload section
     components.create_upload_section()
+    
+    # Export section - Between upload and assets
+    with ui.card().classes('w-full'):
+        with ui.row().classes('w-full justify-between items-center p-4'):
+            with ui.column():
+                ui.label('Asset Inventory').classes('text-xl font-bold')
+                asset_count_display = ui.label('0 devices found').classes('text-sm text-gray-400')
+            
+            ui.button('Export CSV', icon='download', on_click=handle_export).props('color=green no-caps').style('width: 161.05px; height: 36px')
     
     # Assets section
     ui.label('Discovered Assets').classes('text-h5 mb-2')

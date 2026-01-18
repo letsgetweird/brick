@@ -130,9 +130,20 @@ def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback)
 
 def create_upload_section():
     """Create the upload card"""
+    import upload_handler
+    
     with ui.card().classes('w-full'):
-        ui.label('Upload PCAP File').classes('text-h6 mb-2')
-        import upload_handler
-        ui.upload(on_upload=upload_handler.handle_upload, 
-                  label="Drop PCAP file here or click to browse", 
-                  auto_upload=True).classes('w-full').props('accept=".pcap,.pcapng"')
+        with ui.row().classes('w-full justify-between items-center p-4'):
+            ui.label('Upload PCAP File').classes('text-xl font-bold')
+            
+            # Hidden upload element (completely invisible, no notifications)
+            upload = ui.upload(
+                on_upload=upload_handler.handle_upload,
+                auto_upload=True
+            ).props('accept=".pcap,.pcapng"').classes('hidden')
+            
+            # Visible button - exact same styling as export
+            def trigger_upload():
+                upload.run_method('pickFiles')
+            
+            ui.button('Upload PCAP', icon='upload', on_click=trigger_upload).props('color=blue no-caps').style('width: 161.05px; height: 36px')
