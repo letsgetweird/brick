@@ -82,4 +82,4 @@ with ui.column().classes('w-full max-w-6xl mx-auto p-6 gap-6'):
 refresh_data()
 ui.timer(5.0, refresh_data)  # Check every 5 seconds for updates
 
-ui.run(host='0.0.0.0', port=8080, title="Brick", reconnect_timeout=120.0)
+ui.run(host='0.0.0.0', port=8080, title="Brick", reconnect_timeout=300.0)

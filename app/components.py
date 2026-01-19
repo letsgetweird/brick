@@ -136,7 +136,7 @@ def create_asset_card(asset, on_expand_callback, on_toggle_connections_callback,
                     create_connections_section(ip, connections, on_toggle_connections_callback)
 
 def create_upload_section():
-    """Create the upload card with status bar"""
+    """Create the upload card with status and progress bar"""
     import upload_handler
     
     with ui.card().classes('w-full'):
@@ -157,13 +157,22 @@ def create_upload_section():
                 
                 ui.button('Upload PCAP', icon='upload', on_click=trigger_upload).props('color=blue no-caps').style('width: 161.05px; height: 36px')
             
-            # Status bar section
+            # Status message
             with ui.row().classes('w-full items-center gap-2'):
                 ui.icon('info').classes('text-gray-400').style('font-size: 18px')
                 status = ui.label('Ready to upload').classes('text-sm text-gray-400')
-                
-                # Register the status bar with the upload handler
                 upload_handler.set_status_bar(status)
+            
+            # Progress bar (hidden initially)
+            progress_row = ui.row().classes('w-full items-center gap-3')
+            progress_row.visible = False  # Hidden by default
+            
+            with progress_row:
+                # Progress bar without value display
+                progress_bar = ui.linear_progress(value=0, size='20px').classes('flex-grow').props('show-value=false')
+            
+            # Register progress bar with upload handler (no separate label)
+            upload_handler.set_progress_bar(progress_bar, None, progress_row)
 
 
 def create_export_section(asset_count_display_ref):
