@@ -1,7 +1,3 @@
-[![Status](https://img.shields.io/badge/status-beta-yellow)](https://github.com/letsgetweird/brick)
-
-> **Note:** Brick is in beta. Feedback and bug reports welcome!
-
 # 🧱 Brick
 
 Brick is a lightweight, open-source ICS asset discovery tool for industrial networks.
