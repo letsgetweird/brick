@@ -17,7 +17,7 @@ enterprise complexity or cost.
 
 ## Why Brick?
 
-After spending time reviewing existing ICS tooling such as [GRASSMARLIN](https://github.com/nsacyber/GRASSMARLIN) and CISA's [Malcolm](https://github.com/cisagov/Malcolm), I saw a need for a lightweight tool that could be utilzed for ICS asset inventory for budget-constrained organizations. A lot of tools in this space are either overkill for something as simple as an asset inventory or exist as a paid product (usually from the hardware vendor).
+After spending time reviewing existing ICS tooling such as [GRASSMARLIN](https://github.com/nsacyber/GRASSMARLIN) and CISA's [Malcolm](https://github.com/cisagov/Malcolm), I saw a need for a lightweight tool that could be utilzed for simple ICS asset inventory for budget-constrained organizations. A lot of tools in this space are either overkill for something as simple as an asset inventory or exist as a paid product (usually from the hardware vendor).
 There is no special sauce here, this tool is simply glue for the hard work and effort others have put in. 
 
 - **Simple** - Upload PCAP and view results
