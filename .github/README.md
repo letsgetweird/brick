@@ -141,14 +141,7 @@ Brick currently supports the following industrial protocols via CISA ICSNPP plug
 
 ## Roadmap
 
-- [ ] DNP3 protocol support
-- [ ] BACnet protocol support
-- [ ] Asset fingerprinting and identification
-- [ ] Authentication
-- [ ] Configurable / Better Time
-- [ ] Live Traffic ingestion
-- [ ] Integration with external SIEM systems
-- [ ] Better utilize information from ICSNPP Parsers (we barely scratched the surface here)
+- [ ] ?
 
 ---
 
